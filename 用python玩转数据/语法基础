@@ -1,0 +1,7 @@
+1、输入输出：print(变量); print('字符串')
+            data=input('input value:'); type(data); #字符串形式
+            data=int(input('input value:')); #int型
+
+2、续行符：\
+   一行多语句：;
+   缩进
