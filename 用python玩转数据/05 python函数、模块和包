@@ -1,0 +1,12 @@
+1、函数：完成一个特定功能的一段代码，如绝对值函数abs(x)
+        内建函数：str(), type(), float(), dir()等，查看内建函数：dir(_builtins_)，help(zip)
+
+2、模块：非内建函数需要用import导入模块
+         一个完整的Python文件即是一个模块
+         模块里导入指定的模块属性：from Module import ModuleElement
+
+3、包：一个有层次的文件目录结构，定义了一个由子包和模块组成的Python应用程序执行环境
+      import AAA.CCC.c1
+      AAA.CCC.c1.func1(123)   #CCC是AAA的子包，c1是CCC子包的模块，func1是c1模块的函数
+
+4、库：一组具有相关功能的模块的集合
