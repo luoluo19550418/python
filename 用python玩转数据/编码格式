@@ -1,0 +1,7 @@
+1、ASCII: American Standard Code for Information Interchange
+2、CJK-JRG(China, Japan, Korea Joint Research Group)
+3、Unicode: 吸收了CJK-JRG的方案，一个符号占16bit，后来21bit
+4、UTF8、UTF16
+5、UCS-2
+
+参考：https://www.cnblogs.com/tarol/p/7523642.html
