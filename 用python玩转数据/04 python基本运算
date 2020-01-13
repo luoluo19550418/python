@@ -17,5 +17,6 @@
        python2.x, print u'Hello\nWorld'
 
 5、位运算： <<   左移、右移等
+6、成员运算符：a=1; b=[1,2,3]; print(a int b);
 
 ！加括号可以改变运算的优先级
