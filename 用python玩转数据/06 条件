@@ -1,0 +1,60 @@
+1、if语句：
+          if expression:
+              expr_true_suite
+   条件表达式expression：比较、逻辑、成员运算符
+   
+   else语句：
+          if expression:
+              expr_true_suite
+          else:
+              expr_false_suite
+
+   elif语句：if---elif---...---else
+
+2、条件嵌套：同等缩进为同一条件结构
+
+例1：
+sd1=int(input('the first side:'))
+sd2=int(input('the second side:'))
+if sd1==sd2:
+  print("the square's area is", sd1*sd2)
+else:
+  print("the rectangle's area is", sd1*sd2)
+    
+例2：
+k=input('input the index of shape:')
+if k=='1':
+  print('circle')
+elif k=='2':
+  print('oval')
+elif k=='3':
+  print('triangle')
+elif k=='4':
+  print('rectangle')
+else:
+  print('you input the invalid number')
+
+例3：
+k=input('input the index of shape:')
+if k=='1':
+  print('circle)
+elif k=='4':
+  sd1=int(input('the first side:'))
+  sd2=int(input('the second side:'))
+  if sd1==sd2:
+    print("the square's area is", sd1*sd2)
+  else:
+    print("the rectangle's area is", sd1*sd2)
+else:
+  print('you input the valid number')
+  
+例4：猜数字游戏
+from random import randint
+x=randint(0,300)
+digit=int(input('Please input as number between 0~300:'))
+if digit==x:
+  print('Bingo!')
+elif digit>x:
+  print('Too large, please try again.')
+else:
+  print('Too small, please try again.')
