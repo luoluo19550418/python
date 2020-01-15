@@ -1,0 +1,6 @@
+1、语法：range函数类似于一个生成器
+        range(start,end,step)
+        range(start,end)   #缺省step值为1
+        range(end)   #缺省start值为0
+
+例：list(range(3,11,2))
