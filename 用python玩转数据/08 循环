@@ -1,0 +1,44 @@
+1、while循环：
+   while expression:
+       suite_to_repeat
+2、for循环：
+   for iter_var in iterable_object:
+       suite_to_repeat
+   iterable_object: string, list, tuple, dictionary, file. 遍历一个数据集内的成员，在列表解析中使用，在生成器表达式中使用
+
+#--------------------------------------------------------#
+例1：
+sumA=0   #赋初值
+j=1
+while j<10:
+    sumA+=1
+    j+=1
+print(sumA,j)
+
+例2：
+s='python'
+for c in s:
+    print(c)
+for i in range(3,11,2):
+    print(i,end='')
+
+例3：猜数字游戏（遍历数据集）
+#filename:guessnum2.py
+from random import randint
+x=randint(0,300)
+for count in range(0,5):
+    print('Please input a number between0~30:')
+    digit=int(input())
+    if digit==x:
+        print('Bingo!')
+    elif digit>x:
+        print('Too large, please try again.')
+    else:
+        print('Too small, please try again.')
+
+例3：列表解析
+[i for i in range(10)]
+[i+1 for i in range(10) if i%2==0]
+
+例4：生成器表达式
+(i+1 for i in range(10) if i%2==0)
