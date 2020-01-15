@@ -1,4 +1,4 @@
-1、语法：range函数类似于一个生成器
+1、语法：range函数类似于一个生成器（generator，一边循环一边计算的机制，可节省内存）
         range(start,end,step)
         range(start,end)   #缺省step值为1
         range(end)   #缺省start值为0
