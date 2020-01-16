@@ -1,0 +1,76 @@
+1、break：终止当前循环，转而执行循环之后的语句
+
+2、continue：停止当前循环，重新进入循环
+             while循环中，判断循环条件是否满足
+             for循环中，判断迭代是否已经结束
+
+3、while ...else语句：如果循环代码从break处终止，跳出循环
+                     正常结束循环，则执行else中的代码   #------例4
+
+! python中循环变量跳出循环后其值不会再发生变化
+
+#-------------------------------------------------------------------------#
+例1：break语句
+#Filename: breakpro.py
+sumA=0
+i=1
+while True:
+    sumA+=1
+    i+=1
+    if sumA>10:
+        break
+print('i={},sum={}'.format(i,sumA)) 
+
+例2：输出2-100之间的素数
+#Filename: prime.py
+from math import sqrt
+j=2
+while j<=100:
+    i=2
+    k=aqrt(j)
+    while i<=k:
+        if j%i==0: break
+        i=i+1
+    if i>k:
+        print(j,end='')   #print默认打印一行，结尾加换行；加 end=' '意思是末尾不换行，加空格
+    j+=1
+
+#filename: prime.py
+from math import sqrt
+for i in range(2,101):
+    flag=1
+    k=int(sqrt(i))
+    for j in range(2,k+1):
+        if i%j==0: 
+            flag=0   #如果i=2，k值未定义error？
+            break
+    if(j>k or flag):
+        print(i,end='')
+ 
+例3：猜数字游戏
+#Filename: guessnum3.py
+from random import randint
+x=randint(0,300)
+go='y'
+while(go=='y'):
+    digit=int(input('Please input a number between 0~300:')
+    if digit==x: print('Bingo!'); break
+    elif digit>x: print('Too large, please try again.')
+    else: print('Too small, please try again.')
+    print('Input y if you want to continue.')
+    go=input()
+    print(go)
+else: print('Goodbye!')
+
+例4：猜数字游戏
+#Filename: prime.py
+from math import sqrt
+num=int(input('Please enter a number:')
+j=2
+while j<=int(sqrt(num)):
+    if num%j==0:
+        print('{:d} is not a prime.'.format(num))
+        break
+    j+=1
+else:
+    print('{:d} is a prime.'.format(num))
