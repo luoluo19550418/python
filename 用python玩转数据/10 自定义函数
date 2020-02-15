@@ -1,0 +1,64 @@
+1、自定义函数的创建：'apply operation + to argument' DocString
+                   def addMe2Me(x):
+                     return(x+x)
+   查看注释命令：print(函数名.__doc__)
+ 
+2、自定义函数的调用：addMe2Me(5)
+                   addMe2Me('Python')   #即是没有参数，小括号也不能省略
+
+3、默认参数：默认参数以赋值语句的形式提供，且默认参数的值可以改变
+   def f(x=True):
+     '''whether x is a corrent word or not'''
+     if x:
+       print('x is a correct word')
+     print('OK')
+   >>>f()
+   >>>f(False)
+   
+   def f(x,y=True):
+     if y:
+       print(x,'and y both correct')
+     print(x,'is OK')
+   >>>f(68)
+   >>>f(68,False)
+
+  def f(y=True,x):    #这种定义方法是错误的，如：调用 f(False)，无法区分False是传给参一还是参二。
+
+4、位置参数，关键字参数
+   def f(x,y):
+     if y:
+       print(x,'and y both correct')
+     print(x,'is OK')
+   >>>f(y=False,x=68)
+   >>>f(68,False)
+
+5、传递函数：函数可以像参数一样传递给另外一个函数
+   def addMe2Me(x):
+     return (x+x)
+   def self(f,y):
+     print(f(y))       #print addMe2Me(2.2)
+   self(addMe2Me,2.2)
+
+6、lambda函数：匿名函数，简洁方便
+   >>>r=lambda x: x+x
+   >>>r(5)
+   10
+   >>>my_add=lambda x,y: x+y
+   >>>my_add(3,5)
+   8
+
+例1：输出1-100之间的素数：
+#Filename: Prime.py
+from math import sqrt
+def isprime(x):
+  if x==1:
+    return False
+  k=int(sqrt(x))
+  for j in range(2,k+1):
+    if x%j==0:
+      return False
+  return True
+for i in range(2,101):
+  if isprime(i):
+    print(i,end=' ')
+    
