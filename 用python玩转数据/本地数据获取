@@ -1,0 +1,41 @@
+1、打开文件：file_obj=open(filename,mode='r',buffering=-1)   #后两个参数为可选参数
+            help(open)
+2、文件相关函数：
+   返回值(文件对象)：如 f.read(), f.write(), f.readline()
+   写文件:
+   with open('firstpro.txt','w') as f:   #with语句在执行过程中会主动关闭文件句柄
+     f.write('Hello World!')
+   读文件：
+   with open('firsrpro.txt','w') as f:
+     p1=f.read(5)   #读5个字节
+     p2=f.read()    #读文件直到结束
+3、其他读写函数：
+   file_obj.readlines()   #读多行数据
+   file_obj.writelines()  #写多行数据
+
+例1：
+#filename:companies_a.py
+ with open('companies.txt') as f:
+   cNames=f.readlines()
+   print(cNames)   #cNames中会把换行符'\n'也读出来
+
+例2：将文件companies.txt的字符串前加上序号1、2、3、...后写到另一个文件scompanies.txt中
+#Filename:revcopy.py
+with open('companies.txt') as f1:
+  cNames=f1.readlines()
+  for i in range(0,len(cNames)):
+    cNames[i]=str(i+1)+''+cNames[i]
+with open('scompanies.txt', 'w') as f2:
+  f2.writelines(cNames)
+
+例3：在文件的尾部加上一行字符串
+#Filename:companies_b.py
+s='Tencent Technology Company Linited'
+with open('companies.txt', 'a+') as f:   #'a+'可读可写
+  f.writelines('\n')   #换行
+  f.writelines(s)
+  cNames=f.readlines()   #文件指针已到末尾，会报错。须加 f.seek(0)
+  print(cNames)
+  
+file_obj.seek(offset,whence=0)   #whence表示文件当前位置，offset表示移动量
+标准文件：stdin(标准输入) stdout(标准输出) seterr(标准错误)
