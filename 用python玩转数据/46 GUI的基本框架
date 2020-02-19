@@ -11,7 +11,6 @@
    3、wxPython程序将特定类型的时间关联到特定的一块代码（方法），当该类型的事件产生时，相应代码将响应事件被自动执行。
       例：当产生鼠标移动事件时，OnMove()方法将被自动调用
 
-
 eg1：创建一个简单的wxPython程序
 #Filename: fistwxPython.py
 import wx   #应用程序对象和框架对象
