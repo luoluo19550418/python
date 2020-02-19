@@ -53,7 +53,7 @@ if __name__=='__main__':   #相当于C语言中的main函数，是程序的入�
   dog.setName("Pual")   #调用方法setName
   dog.greet()
 
-g2: __init__()举例
+eg2: __init__()举例
 #Filename:doginsta.py
 class Dog(object):
   def __init__(self,name):
