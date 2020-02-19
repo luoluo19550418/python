@@ -1,0 +1,79 @@
+一、wx组件：
+   容器组件：用于容纳其他组件，wx.Panel
+   动态组件：可以被用户编辑，wx.Button, wxTextCtrl, wx.ListBox
+   静态组件：显示信息用，不能被用户编辑，wx.StaticBitmap, wx.StaticText, wx.StaticLine
+   其他组件：wx.ToolBar, wx.MenuBar, wx.StatusBar
+   2、TextControl的父窗口是Panel，Panel的父窗口是Frame
+
+二、事件处理机制(Event Handling)
+   1、GUI程序工作的基本机制之一：事件处理
+   2、事件：移动鼠标，按下鼠标左键，单机按钮；可以由用户操作触发产生，也可以在程序中创建对象产生
+   3、wxPython程序将特定类型的时间关联到特定的一块代码（方法），当该类型的事件产生时，相应代码将响应事件被自动执行。
+      例：当产生鼠标移动事件时，OnMove()方法将被自动调用
+
+
+eg1：创建一个简单的wxPython程序
+#Filename: fistwxPython.py
+import wx   #应用程序对象和框架对象
+app=wx.App()   #创建应用程序对象，用来执行像消息循环这样的动作
+frame=wx.Frame(None,title="Hello,World")   #创建frame框架对象，是其他GUI组件的容器
+frame.Show(True)   #用来显示窗体
+app.MainLoop()   #进入事件循环，读事件，找函数调用
+
+eg2：用面向对象的方法修改上例
+#Filename: mouse.py
+import wx
+class MyApp(wx.App):   #从父类wx中派生子类MyApp
+  def Oninit(self):  #定义一个应用程序的初始化方法
+    frame=wx.Frame(None,title="Hello, World")   #定制标题栏
+    frame.Show()
+    return True
+if __name__=='__main__':
+  app=MyApp()  #应用程序对象也可以是wx.App的子类的一个实例？
+  app.MainLoop()  #主事件循环
+  
+eg3：在文本框中显示"Hello, world!"，而不是在标题栏中
+#Filename1: mouse.py
+import wx
+class MyApp(wx.App):   #从父类wx中派生子类MyApp
+  def Oninit(self):  #定义一个应用程序的初始化方法
+    frame=wx.Frame(None,title="Hello, World")   #定制标题栏
+    frame.Show()
+    return True
+#Filename2: helloworld.py
+import wx
+class Frame1(wx.Frame):
+  def __init__(self,superior):
+    wx.Frame.__init__(self,parent=superior,title="Example",pos=(100,200),size=(350,200))
+    panel=wx.Panel(self)
+    text1=wx.TextCtrl(panel,value="Hello,World!",size=(350,200))
+if __name__='__main__':
+  app=wx.App()
+  frame=Frame1(None)
+  frame.Show(True)
+  app.MainLoop()
+
+eg4：将用户事件和处理逻辑联系在一起：鼠标左键抬起事件绑定到Panel的OnClick方法上
+#Filename1: mouse.py
+import wx
+class MyApp(wx.App):   #从父类wx中派生子类MyApp
+  def Oninit(self):  #定义一个应用程序的初始化方法
+    frame=wx.Frame(None,title="Hello, World")   #定制标题栏
+    frame.Show()
+    return True
+#Filename2: helloworld.py
+import wx
+class Frame1(wx.Frame):
+  def __init__(self,superior):
+    wx.Frame.__init__(self,parent=superior,title="Example",pos=(100,200),size=(350,200))
+    self.panel=wx.Panel(self)
+    self.panel.Bind(wx.EVT_LEFT_UP,self.OnClick)  #将wx子类wx.EVT_LEFT_UP鼠标抬起事件 绑定到 派生子类self.OnClick方法上面
+  def OnClick(self,event):
+    posm=event.GetPosition()  #获得鼠标单击的位置
+    wx.StaticText(parent=self.panel,label="Hello,Wold!",pos=(posm.x,posm.y))  #在鼠标单击的位置上放置一个静态的文本控件
+if __name__=='__main__':
+  app=wx.App()
+  frame=Frame1(None)
+  frame.Show(True)
+  app.MainLoop()
+#如果此程序运行时出现："The wx.App object must be created firse!"，则用指令"del app"处理即可。
