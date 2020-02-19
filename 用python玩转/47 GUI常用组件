@@ -1,0 +1,58 @@
+GUI组件：静态文本，列表框，输入框，按钮，菜单
+一、按钮：接受用户的点击事件，触发相应的操作
+    常用按钮：wx.Button(文本按钮), wx.BitmapButton(位图按钮), wx.ToggleButton(开关按钮)
+    绑定处理按钮点击事件
+
+二、菜单：wxPython用于创建菜单的类
+         wx.MenuBar(菜单栏)
+         wx.Menu(菜单)
+         wx.MenuItem(菜单项命令)
+    菜单事件：wx.EVT_MENU
+    #Filename: munudemo.py
+    ...
+      #绑定事件处理器
+      self.Bind(wx.EVT_MENU,self.OnClickBigger,biggerItem)
+      self.Bind(wx.EVT_MENU,self.OnClickQuit,id=wx.ID_EXIT)
+    ...
+      #事件处理器
+    def OnClickBigger(self,e):
+      pass
+    def OnClickQuit(self,e):
+      self.Close()
+    ...
+
+三、静态文本框(StaticText)和文本框(TextCtrl)
+    1、文本框用于接收用户在框内输入的信息，或显示由程序提供的信息
+       类：wx.TextCtrl #常用形式：单行，多行，富文本框
+    2、静态文本框（标签）：
+       类：wx.StaticText
+
+四、列表(ListCtrl)
+    1、列表用于显示多个条目并且可供用户选择
+    2、列表能够以四种不同模式建造：
+       wx.LC_ICON(图标)
+       wx.LC_SMALL_ICON(小图标)
+       wx.LC_LIST(列表)
+       wx.LC_REPORT(报告)
+
+五、单选框(RadioBox)和复选框(CheckBox)
+    单选框：用于从互斥的选项中选取其一
+    复选框：可同时选中多个选项
+
+eg1：用鼠标点击一次"Click Me"，换行输出"Hello, World!"
+#Filename:helloworldbtn.py
+import wx
+class Frame1(wx.Frame):
+  def __init__(self,superior):
+    wx.Frame.__init__(self,parent=superior,title="Hello world in wxPython")
+    panel=wx.Panel(self)
+    sizer=wx.BoxSizer(wx.VERTICAL)  #布局管理
+    self.text1=wx.TextCtrl(panel,value="Hello, World!", size=(200,180),style=wx.TE_MULTILINE)
+    sizer.Add(self.text1,0,wx.ALIGN_TOP | wx.EXPAND)
+    button=wx.Button(panel,label="Click Me")
+    sizer.Add(button)
+    panel.SetSizerAndFit(sizer)
+    panel.Layout()
+    self.Bind(wx.EVT_BUTTON,self.OnClick,button)
+  def OnClick(self,text):
+    self.text1.AppendText("\nHello, World!")
