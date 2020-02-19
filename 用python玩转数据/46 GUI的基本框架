@@ -52,7 +52,7 @@ if __name__='__main__':
   frame.Show(True)
   app.MainLoop()
 
-eg4：将用户事件和处理逻辑联系在一起：鼠标左键抬起事件绑定到Panel的OnClick方法上
+eg4：将用户事件和处理逻辑联系在一起：鼠标左键抬起事件绑在Panel的OnClick方法上
 #Filename1: mouse.py
 import wx
 class MyApp(wx.App):   #从父类wx中派生子类MyApp
