@@ -1,0 +1,37 @@
+1、继承：在抽象的基础上进行细化和扩展，从而生成新的抽象。比如：可以把普通车辆改装派生出救护车，出租车等，这就是继承。
+   父类（基类），子类（派生类）
+2、python GUI类库：
+   Control
+   Button(Control的派生，除了Control的全部功能外，还增加了SetDefault()等功能)
+   BitmapButton(除了Button的功能外，还...)
+3、子类的定义：
+   class SubClassName(ParentClass1[, ParentClass2, ...]):   #单继承(父类只有一个)，多继承(有多个父类)
+     'optional class documentation string'
+     class_suite
+
+4、私有属性和方法：
+   默认情况下，python类的成员属性和方法都是"public"
+   python提供“访问控制符”来限定成员函数的访问：
+     双下划线：__var属性会被__classname_var替换，将防止父类和子类中的同名冲突
+     单下划线：在属性名前使用一个单下划线字符，防止模块的属性用 "from mymodule import *" 来加载
+
+eg1：子类的定义和重载
+#Filename1:doginsta.py   #父类
+class Dog(object):
+  counter=0
+  def __init__(self,name):
+    self.name=name   #相当于dog.name="Paul"
+    Dog.counter+=1
+  def greet(self):
+    print("Hi, I am called %s." %self.name)
+#Filename2: overridepro.py   #子类
+class BarkingDog(Dog):
+  "define subclass BarkingDog"
+  def greet(self):
+    "initial subclass"
+    print("Woof! I am %s, my number is %d" %(self.name, Dog.counter))
+if __name__=='__main__':   #相当于C语言中的main函数，是程序的入口
+  dog=BarkingDog('Zoe')
+  dog.greet()
+
+官网：wxpython
