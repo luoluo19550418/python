@@ -1,0 +1,78 @@
+一、面向对象
+1、类：描述了对象的特征（数据和操作）。比如狗（嗷嗷和娇娇）属于一类。
+
+2、对象（实例）：由数据及能对其实施的操作所构成的封装体。比如嗷嗷属于狗这一类的一个实例。
+例：按钮这一类的相同点：有名字，有矩形框，鼠标点击时有效果
+               功能不同：刷新，退出
+
+3、类与对象的关系：类可以具体化多个对象，而多个对象可以抽象成一个类。所以类是模板，对象属于值的范畴。
+
+4、类的定义：
+   class ClassName(object):   #()里面是类的副类，object万类之源
+     'define ClassName class'   #''是docstring，提供查询文档帮助信息
+     class_suite   #suite(套、组)
+     
+   class MyDate(object):   #命名空间namespace，类什么也不做，相当于一个容器
+     'this is a very simple example class'
+     pass
+
+5、类方法的定义：
+   class Dog(object):
+     def greet(self):   #方法定义，self调用时不需要实参与之对应，但只有类有实例时才被调用（self相当于这个实例）
+       print('Hi!')
+
+6、实例的创建：
+   >>>dog=Dog()   #dog是实例名
+   >>>dog.greet() #调用实例方法
+   常用的面向对象方法：定义类——Dog；创建一个实例——dog；通过实例使用属性或方法——dog.greet()
+ 
+7、对象的初始化方法 __init__()
+   (1)当类被调用后，Python将创建实例对象；
+   (2)创建完对象后，Python自动调用第一个方法 __int__()；
+   (3)实例对象作为方法的第一个参数(self)被传递进去，调用类创建实例对象的参数都传给 __int__()
+ 
+8、类属性：任意两个对象之间可以有共同的属性，特点：
+   类的数据属性（静态成员），仅仅是所定义的类的变量；
+   在类创建后被使用；
+   可以由类中的方法来更新，也可以在主程序中更新；
+   类属性和实例无关，修改类属性需要使用类名。
+
+9、以按钮(Button)为例：Quit按钮
+   label, size, pos, Font, ...
+   SetLabel, SetDefault, Enable, ...
+
+eg1:实例属性
+#Filename:doginsta.py
+class Dog(object):
+  def setName(self,name):
+    self.name=name   #相当于dog.name="Paul"
+  def greet(self):
+    print("Hi, I am called %s." %self.name)
+if __name__=='__main__':   #相当于C语言中的main函数，是程序的入口
+  dog=Dog()   #创建实例dog
+  dog.setName("Pual")   #调用方法setName
+  dog.greet()
+
+g2: __init__()举例
+#Filename:doginsta.py
+class Dog(object):
+  def __init__(self,name):
+    self.name=name   #相当于dog.name="Paul"
+  def greet(self):
+    print("Hi, I am called %s." %self.name)
+if __name__=='__main__':   #相当于C语言中的main函数，是程序的入口
+  dog=Dog('Sara')
+  dog.greet()
+
+eg3:类属性
+#Filename:doginsta.py
+class Dog(object):
+  counter=0   #类属性，
+  def __init__(self,name):
+    self.name=name
+    Dog.couter+1=1   #修改类属性须加类名
+  def greet(self):
+    print("Hi, I am %s, my number is %d"%(self.name, Dog.counter))
+if __name__=='__main__':
+  dog=Dog("Zara")
+  dog.greet()
