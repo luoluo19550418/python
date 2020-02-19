@@ -1,0 +1,14 @@
+1、
+def foo():
+  '''add function'''
+  listA=[]
+  print('input the numbers: ')
+  while True:
+    num=input()
+    if num=='.':
+      break
+    listA.append(eval(num))
+  sumList=sum(listA)
+  return sumList
+
+2、图形用户界面
