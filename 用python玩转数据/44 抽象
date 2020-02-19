@@ -8,7 +8,7 @@
 3、类与对象的关系：类可以具体化多个对象，而多个对象可以抽象成一个类。所以类是模板，对象属于值的范畴。
 
 4、类的定义：
-   class ClassName(object):   #()里面是类的副类，object万类之源
+   class ClassName(object):   #()里面是类的父类，object万类之源
      'define ClassName class'   #''是docstring，提供查询文档帮助信息
      class_suite   #suite(套、组)
      
