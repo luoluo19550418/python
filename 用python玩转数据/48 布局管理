@@ -1,0 +1,48 @@
+当程序有不只一个GUI组件时，会出现不同组件间的覆盖现象，所以需要布局管理。
+一、绝对定位：每个窗口部件被创建时可以显式地指定它的位置和大小
+       缺点：定位不灵活，调整大小困难
+
+二、sizer：灵活布局的解决方案
+    1、每个sizer有自己的定位策略，开发者只需要选择合适策略的sizer将窗口组件放入，并且指定好需求即可
+    2、sizer本身不是一个容器或一个窗口部件，它只是一个屏幕布局的算法
+    3、sizer允许嵌套，wxPython常用的sizer
+       wx.BoxSizer：在一条线上布局子窗口部件(垂直或竖直方向)
+       wx.FlexGridSizer：所有组件大小一致，固定一个方向，在另外一个方向生长
+       wx.GridSizer：行高和列宽由最大的组件决定
+       wx.GridBagSizer, wx.StaticBoxSizer
+三、使用sizer的步骤
+    1、创建自动调用尺寸的容器，例如panel
+    2、创建sizer
+    3、创建子窗口(窗口部件)
+    4、使用sizer的Add()方法将每个子窗口添加给sizer
+    5、调用容器的SetSizer(sizer)方法
+
+eg1：将用户事件和处理逻辑联系在一起：鼠标左键抬起事件绑在Panel的OnClick方法上
+#Filename1: mouse.py
+import wx
+class MyApp(wx.App):   #从父类wx中派生子类MyApp
+  def Oninit(self):  #定义一个应用程序的初始化方法
+    frame=wx.Frame(None,title="Hello, World")   #定制标题栏
+    frame.Show()
+    return True
+#Filename2:helloworldbtn.py
+import wx
+class Frame1(wx.Frame):
+  def __init__(self,superior):
+    wx.Frame.__init__(self,parent=superior,title="Hello world in wxPython")
+    panel=wx.Panel(self)  #创建自动调用尺寸的容器
+    sizer=wx.BoxSizer(wx.VERTICAL)  #创建sizer：BoxSizer的实例，VERTICAL垂直方向
+    self.text1=wx.TextCtrl(panel,value="Hello, World!", size=(200,180),style=wx.TE_MULTILINE)  #创建窗口部件TextCtrl
+    sizer.Add(self.text1,0,wx.ALIGN_TOP | wx.EXPAND)  #每创建一个部件，使用sizer的Add()方法将其添加到sizer
+    button=wx.Button(panel,label="Click Me")  #创建窗口部件Button
+    sizer.Add(button)  #
+    panel.SetSizerAndFit(sizer)  #调用容器panel的SetSizer(sizer)方法来layout
+    panel.Layout()
+    self.Bind(wx.EVT_BUTTON,self.OnClick,button)
+  def OnClick(self,text):
+    self.text1.AppendText("\nHello, World!")
+if __name__=='__main__':
+  app=wx.App()
+  frame=Frame1(None)
+  frame.Show(True)
+  app.MainLoop() 
