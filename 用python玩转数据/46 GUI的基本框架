@@ -15,7 +15,7 @@ eg1：创建一个简单的wxPython程序
 #Filename: fistwxPython.py
 import wx   #应用程序对象和框架对象
 app=wx.App()   #创建应用程序对象，用来执行像消息循环这样的动作
-frame=wx.Frame(None,title="Hello,World")   #创建frame框架对象，是其他GUI组件的容器
+frame=wx.Frame(None,title="Hello,World")   #创建frame框架对象，是其他GUI组件的容器：Wx.Frame(parent,id,title,pos,size,style,name)
 frame.Show(True)   #用来显示窗体
 app.MainLoop()   #进入事件循环，读事件，找函数调用
 
