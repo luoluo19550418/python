@@ -1,4 +1,6 @@
-# Filename1: my_finance.py
+#python版本的雅虎财经软件：处理数据和可视化代码 填充到用户事件绑定的方法中
+
+# Filename1: my_finance.py  获取股票信息
 # -*- coding: utf-8 -*-
 """
 get DJI data
@@ -47,7 +49,7 @@ ID_EVENT_REFRESH = 9999
 
 class StockFrame(wx.Frame):
 	option_list = {'open': True, 'close': True, 'high': False, 'low': False, 'volume': False}
-	def __init__(self, title):
+	def __init__(self, title):  #各类组件和布局的定义
 		wx.Frame.__init__(self, None, title=title, size=(430,600))
 		self.CreateStatusBar()
 		menuBar = wx.MenuBar()
@@ -96,11 +98,11 @@ class StockFrame(wx.Frame):
 		self.Center()
 		# start loading data right after the window comes up
 		self.OnRefresh(None)
-	def createHeader(self):
+	def createHeader(self):  #定义数据显示
 		self.list.InsertColumn(0, "Symbol")
 		self.list.InsertColumn(1, "Name")
 		self.list.InsertColumn(2, "Last Trade")
-	def setData(self, data):
+	def setData(self, data):  #定义数据显示
 		self.list.ClearAll()
 		self.createHeader()
 		pos = 0
@@ -112,7 +114,7 @@ class StockFrame(wx.Frame):
 		if pos % 2 == 0:
 			# Set new look and feel for odd lines
 			self.list.SetItemBackgroundColour(pos, (134, 225, 249))
-	def PlotData(self, code):
+	def PlotData(self, code):  #选择'date','open','close','high','low','volume'等属性
 		quotes = finance.retrieve_quotes_historical(code)
 		fields = ['date','open','close','high','low','volume']
 		dates = []
@@ -127,9 +129,9 @@ class StockFrame(wx.Frame):
 			if not value:
 				fields_to_drop.append(key)
 		quotesdf = quotesdf.drop(fields_to_drop, axis = 1)
-		quotesdf.plot()
+		quotesdf.plot()  #plot后面无参数，就是画基本的直线图
 		plt.show()
-	def OnDoubleClick(self, event):
+	def OnDoubleClick(self, event):  #组件绑定的事件的定义
 		self.PlotData(event.GetText())
 	def OnTextSubmitted(self, event):
 		self.PlotData(event.GetString())
@@ -142,8 +144,8 @@ class StockFrame(wx.Frame):
 		self.Destroy()
 	def OnRefresh(self, event):
 		thread.start_new_thread(self.retrieve_quotes, ())
-	def retrieve_quotes(self):
-		data = finance.retrieve_dji_list()
+	def retrieve_quotes(self):  #数据来源
+		data = finance.retrieve_dji_list()  #调用了finance里面的retrieve_dji_list()函数
 		if data:
 			self.setData(data)
 		else:
