@@ -70,7 +70,7 @@ class Dog(object):
   counter=0   #类属性，
   def __init__(self,name):
     self.name=name
-    Dog.couter+1=1   #修改类属性须加类名
+    Dog.counter+=1   #修改类属性须加类名
   def greet(self):
     print("Hi, I am %s, my number is %d"%(self.name, Dog.counter))
 if __name__=='__main__':
