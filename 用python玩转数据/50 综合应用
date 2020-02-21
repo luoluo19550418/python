@@ -47,7 +47,7 @@ import _thread as thread
 import wx
 ID_EVENT_REFRESH = 9999
 
-class StockFrame(wx.Frame):
+class StockFrame(wx.Frame):  #窗体
 	option_list = {'open': True, 'close': True, 'high': False, 'low': False, 'volume': False}
 	def __init__(self, title):  #各类组件和布局的定义
 		wx.Frame.__init__(self, None, title=title, size=(430,600))
