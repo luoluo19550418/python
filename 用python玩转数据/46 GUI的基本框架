@@ -22,7 +22,7 @@ app.MainLoop()   #进入事件循环，读事件，找函数调用
 eg2：用面向对象的方法修改上例
 #Filename: mouse.py
 import wx
-class MyApp(wx.App):   #从父类wx中派生子类MyApp
+class MyApp(wx.App):   #从父类wx中派生子类MyApp，应用程序对象app+框架对象frame
   def Oninit(self):  #定义一个应用程序的初始化方法
     frame=wx.Frame(None,title="Hello, World")   #定制标题栏
     frame.Show()
@@ -46,7 +46,7 @@ class Frame1(wx.Frame):
     wx.Frame.__init__(self,parent=superior,title="Example",pos=(100,200),size=(350,200))
     panel=wx.Panel(self)
     text1=wx.TextCtrl(panel,value="Hello,World!",size=(350,200))
-if __name__='__main__':
+if __name__=='__main__':
   app=wx.App()
   frame=Frame1(None)
   frame.Show(True)
