@@ -18,7 +18,7 @@
 
 5、类方法的定义：
    class Dog(object):
-     def greet(self):   #方法定义，self调用时不需要实参与之对应，但只有类有实例时才被调用（self相当于这个实例）
+     def greet(self):   #方法定义，self调用时不需要实参与之对应，但只有类有实例时才被调用（self相当于这个实例），self代表类的实例，而非类
        print('Hi!')
 
 6、实例的创建：
