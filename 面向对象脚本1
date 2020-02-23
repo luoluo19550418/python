@@ -1,0 +1,99 @@
+1、类的私有属性：
+__private_attrs：两个下划线开头，声明该属性为私有，不能在类的外部被使用或直接访问。在类内部的方法中使用时 self.__private_attrs。
+2、类的方法：
+在类的内部，使用 def 关键字可以为类定义一个方法，与一般函数定义不同，类方法必须包含参数 self,且为第一个参数
+3、类的私有方法
+__private_method：两个下划线开头，声明该方法为私有方法，不能在类的外部调用。在类的内部调用 self.__private_methods
+
+例1:创建实例对象，访问属性，内置类属性
+class Employee:  #'所有员工的基类'
+   empCount=0  #empCount是一个类变量，它的值将在这个类的所有实例之间共享
+   def __init__(self, name, salary):  #__init__()方法被称为类的构造函数或初始化方法，当创建了这个类的实例时就会调用该方法
+      self.name = name
+      self.salary = salary
+      Employee.empCount += 1
+   
+   def displayCount(self):  #类的方法与普通的函数相比，必须有一个额外的第一个参数名称self,
+     print("Total Employee %d" % Employee.empCount)
+ 
+   def displayEmployee(self):
+      print("Name : ", self.name,  ", Salary: ", self.salary)
+if __name__ == '__main__':
+	emp1 = Employee("Zara", 2000)  #创建Employee类的第一个对象
+	emp2 = Employee("Manni", 5000)
+	emp1.displayEmployee()  #使用点号来访问对象的属性
+	emp2.displayEmployee()
+	print("Total Employee %d" % Employee.empCount)
+	emp1.displayCount()
+	emp2.displayCount()
+  
+例2：继承：面向对象的编程带来的主要好处之一是代码的重用，实现这种重用的方法之一是通过继承机制。
+class Parent:        # 定义父类
+   parentAttr = 100
+   def __init__(self):
+      print ("调用父类构造函数")
+ 
+   def parentMethod(self):
+      print ('调用父类方法')
+ 
+   def setAttr(self, attr):
+      Parent.parentAttr = attr
+ 
+   def getAttr(self):
+      print ("父类属性 :", Parent.parentAttr)
+ 
+class Child(Parent): # 定义子类
+   def __init__(self):
+      print ("调用子类构造方法")
+ 
+   def childMethod(self):
+      print ('调用子类方法')
+if __name__=="__main__":
+	c = Parent()         #实例化父类，调用构造方法
+	c = Child()          # 实例化子类，
+	c.childMethod()      # 调用子类的方法
+	c.parentMethod()     # 调用父类方法
+	c.setAttr(200)       # 再次调用父类的方法 - 设置属性值
+	c.getAttr()          # 再次调用父类的方法 - 获取属性值
+  
+例3：方法重写：如果父类方法的功能不能满足需求，可以在子类重写父类的方法
+class Parent:        # 定义父类
+   def myMethod(self):
+      print('调用父类方法')
+class Child(Parent): # 定义子类
+   def myMethod(self):
+      print('调用子类方法')
+c = Child()          # 子类实例
+c.myMethod()         # 子类调用重写方法
+
+例4：运算符重载（方法重写）
+class Vector:
+   def __init__(self, a, b):
+      self.a = a
+      self.b = b
+   def __str__(self):
+      return 'Vector (%d, %d)' % (self.a, self.b)
+   def __add__(self,other):
+      return Vector(self.a + other.a, self.b + other.b)
+v1 = Vector(2,10)
+v2 = Vector(5,-2)
+print(v1 + v2)
+
+例4：类属性与方法
+class JustCounter:
+    __secretCount = 0  #类的私有变量（私有属性）
+    publicCount = 0    #类的公开变量（公有属性）
+    def count(self):   #类的私有方法
+        self.__secretCount += 1
+        self.publicCount += 1
+        print(self.__secretCount)
+ counter = JustCounter()
+counter.count()
+counter.count()
+print(counter.publicCount)
+#print(counter.__secretCount)  # 报错，实例不能访问私有变量
+
+class Runoob:
+    __site = "www.runoob.com"
+runoob = Runoob()
+print(runoob._Runoob__site)  #Python不允许实例化的类访问私有数据，但你可以使用 object._className__attrName（对象名._类名__私有属性名）访问属性
