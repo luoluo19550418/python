@@ -1,0 +1,52 @@
+情况一：子类需要自动调用父类的方法：子类不重写__init__()方法，实例化子类后，会自动调用父类的__init__()的方法。
+情况二：子类不需要自动调用父类的方法：子类重写__init__()方法，实例化子类后，将不会自动调用父类的__init__()的方法。
+情况三：子类重写__init__()方法又需要调用父类的方法：使用super关键词。
+
+实例1：子类不重写 __init__，实例化子类时，会自动调用父类定义的 __init__
+class Father(object):
+    def __init__(self, name):
+        self.name=name
+        print("name: %s" %(self.name))
+    def getName(self):
+        return 'Father ' + self.name
+class Son(Father):
+    def getName(self):
+        return 'Son '+self.name
+if __name__=='__main__':
+    son=Son('runoob')
+    print(son.getName())
+
+实例2：如果重写了__init__ 时，实例化子类，就不会调用父类已经定义的 __init__
+class Father(object):
+    def __init__(self, name):
+        self.name=name
+        print ( "name: %s" %( self.name) )
+    def getName(self):
+        return 'Father ' + self.name
+class Son(Father):
+    def __init__(self, name):
+        print ( "hi" )
+        self.name =  name
+    def getName(self):
+        return 'Son '+self.name
+if __name__=='__main__':
+    son=Son('runoob')
+    print(son.getName())
+
+例3：如果重写了__init__ 时，要继承父类的构造方法，可以使用 super 关键字
+class Father(object):
+    def __init__(self, name):
+        self.name=name
+        print ( "name: %s" %( self.name))
+    def getName(self):
+        return 'Father ' + self.name
+class Son(Father):
+    def __init__(self, name):
+        super(Son, self).__init__(name)  #super(子类，self).__init__(参数1，参数2，....) 或 父类名称.__init__(self,参数1，参数2，...)
+        print ("hi")
+        self.name =  name
+    def getName(self):
+        return 'Son '+self.name
+if __name__=='__main__':
+    son=Son('runoob')
+    print(son.getName())
