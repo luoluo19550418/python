@@ -1,0 +1,5 @@
+import wx
+app=wx.App()  #实例化一个app(应用程序)，任何一个应用程序都是一个app
+frame=wx.Frame(None,-1,u'入门')  #Frame是一个容器，内部可以包含多个容器或者组件，Frame的第一个参None表示它是顶层的容器，它包含了应用程序的所有组件；标题。
+frame.Show()  #显示Frame窗口
+app.MainLoop()  #用app.mainLoop来启动程序
