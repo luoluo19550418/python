@@ -90,7 +90,7 @@ class JustCounter:
     def count(self):   #类的私有方法
         self.__secretCount += 1
         self.publicCount += 1
-        print(self.__secretCount)
+        print(self.__secretCount)  #私有变量，只能在类的内部调用 ，不能在类的外部调用
  counter = JustCounter()
 counter.count()
 counter.count()
@@ -101,3 +101,24 @@ class Runoob:
     __site = "www.runoob.com"
 runoob = Runoob()
 print(runoob._Runoob__site)  #Python不允许实例化的类访问私有数据，但你可以使用 object._className__attrName（对象名._类名__私有属性名）访问属性
+
+例5：类的私有方法
+class Site:
+    def __init__(self, name, url):
+        self.name = name       # public
+        self.__url = url   # private
+ 
+    def who(self):
+        print('name  : ', self.name)
+        print('url : ', self.__url)
+ 
+    def __foo(self):          # 私有方法
+        print('这是私有方法')
+ 
+    def foo(self):            # 公共方法
+        print('这是公共方法')
+        self.__foo()          # 私有方法，只能在类的内部调用 ，不能在类的外部调用
+x = Site('菜鸟教程', 'www.runoob.com')
+x.who()        # 正常输出
+x.foo()        # 正常输出
+#x.__foo()      # 报错
