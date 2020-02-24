@@ -12,8 +12,8 @@ __private_method：两个下划线开头，声明该方法为私有方法，不�
 例1:创建实例对象，访问属性，内置类属性
 class Employee:  #'所有员工的基类'
    empCount=0  #empCount是一个类变量，它的值将在这个类的所有实例之间共享
-   def __init__(self, name, salary):  #__init__()方法被称为类的构造函数或初始化方法，当创建了这个类的实例时就会调用该方法
-      self.name = name
+   def __init__(self, name, salary):  #__init__()方法被称为类的构造函数或初始化方法，当创建了这个类的实例时就会自动调用该方法
+      self.name = name  #self就是实例本身
       self.salary = salary
       Employee.empCount += 1
    
