@@ -49,3 +49,5 @@
      for star in p:
      	 s += int(star)  #计算评分的总和
      print(s)
+
+注：抓取网络内容要遵循爬虫协议。
