@@ -1,0 +1,51 @@
+一、网络数据如何获取：
+    1、抓取网页：urllib内建模块urllib.request；Requests第三方库；Scrapy框架
+    2、解析网页：BeautifulSoup库；re模块
+    3、请求request和响应response两个过程
+    4、第三方API抓取+解析
+
+二、Requests库：http://www.python-requests.org/
+    1、基本方法：requests.get()
+    2、爬虫协议：robots.txt
+      >>>import requests
+      >>>r=requests.get('https://book.douban.com/subject/1084336/comments/')
+      >>>r.status_code  #状态码
+      >>>r.text
+    3、利用Requests库获取 道指成分股数据
+      #filename: dji.py
+      >>>import requests
+      >>>re=requests.get('http://money.cnn.com/data/dow30/') #the url may change
+      >>>print(re.text)
+      #如果网页返回内容是json格式，用re.json()解码；如果是二进制形式，可用re.content解码；re.text自动推测文本编码并进行解码。
+      #可以用re.encoding='utf-8'修改文本的编码
+
+三、网页数据解析：BeautifulSoup是一个可以从HTML或XML文件中提取数据的Python库；
+                re正则表达式模块进行各类正则表达式处理。
+    >>> from bs4 import BeautifulSoup
+    >>> markup='<p class="title"><b>The Little Prince</b></p>'  #定义一个字符串
+    >>> soup=BeautifulSou>>>p(markup,"lxml")  #BeautifulSoup对象
+    >>> soup.b  #访问标签内容
+    >>> type(soup.b)
+    >>> tag=soup.p
+    >>> tag.name  #tag属性
+    >>> tag.attrs
+    >>> tag['class']  #获取tag属性
+    >>> tag.string  #取tag中非属性的字符串
+    >>> type(tag.string)
+    >>> soup.find_all('b')  #寻找b标签的内容
+
+例1：《小王子》书评内容解析
+     import requests
+     from bs4 import BeautifulSoup
+     import re
+     s = 0
+     r = requests.get('https://book.douban.com/subject/bookid/comments/')
+     soup = BeautifulSoup(r.text, 'lxml')  #把requests.get到的对象作为一个参数传入BeautifulSoup函数，获得一个BeautifulSoup对象
+     pattern = soup.find_all('span', 'short') #(网站前一版本评论行的标签为“ 'p',属性'comment-content' ”)；通过find_all方法寻找评论所在的行
+     for item in pattern:  #find_all方法返回的是一个列表
+     	 print(item.string)  #对列表中的每一项只输出该项的string属性，即可获得字符串
+     pattern_s = re.compile('<span class="user-stars allstar(.*?) rating"')  #将字符串user-stars allstar50 rating编译成pattern实例
+     p = re.findall(pattern_s, r.text)  #用findall匹配源代码r.text中的内容，返回列表p
+     for star in p:
+     	 s += int(star)  #计算评分的总和
+     print(s)
