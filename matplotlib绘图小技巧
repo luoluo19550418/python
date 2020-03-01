@@ -1,0 +1,220 @@
+1、添加标题
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+myfont = matplotlib.font_manager.FontProperties(fname='C:\Windows\Fonts\simsun.ttc')  #图中显示中文
+x=np.arange(0,10)
+plt.title('标题',fontproperties=myfont)
+plt.plot(x,x*x)
+plt.show()
+
+2、添加文字text
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+myfont = matplotlib.font_manager.FontProperties(fname='C:\Windows\Fonts\simsun.ttc')  #图中显示中文
+x=np.arange(-10,11,1)
+y=x*x
+plt.plot(x,y)
+plt.title('标题',fontproperties=myfont)  #添加标题
+plt.text(-2.5,30,'function y=x*x')  #添加文字
+plt.show()
+
+3、添加注释annotate
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+myfont = matplotlib.font_manager.FontProperties(fname='C:\Windows\Fonts\simsun.ttc')  #图中显示中文
+x=np.arange(-10,11,1)
+y=x*x
+plt.plot(x,y)
+plt.title('标题',fontproperties=myfont)  #添加标题
+plt.annotate('这是一个示例注释',xy=(0,1),xytext=(-2,22),arrowprops={'headwidth':10,'facecolor':'r'},fontproperties=myfont)
+plt.show()
+
+4、设置坐标名称xlabel/ylabel
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+myfont=matplotlib.font_manager.FontProperties(fname='C:\Windows\Fonts\simsun.ttc')  #图中显示中文
+x=np.arange(1,20)
+plt.xlabel('示例x轴',fontproperties=myfont)
+plt.ylabel('示例y轴',fontproperties=myfont)
+plt.plot(x,x*x)
+plt.show()
+
+5、添加图例legend
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+myfont = matplotlib.font_manager.FontProperties(fname='C:\Windows\Fonts\simsun.ttc')  #图中显示中文
+x=np.arange(1,20)
+plt.plot(x,x)
+plt.plot(x,x*2)
+plt.plot(x,x*3)
+plt.plot(x,x*4)
+plt.legend(['生活','颜值','工作','金钱'],prop=myfont)
+plt.show()
+
+6、调整颜色color
+import numpy as np
+import matplotlib.pyplot as plt
+x=np.arange(1,5)
+#颜色的几种方式
+plt.plot(x,color='g')
+plt.plot(x+1,color='0.5')
+plt.plot(x+2,color='#FF00FF')
+plt.plot(x+3,color=(0.1,0.2,0.3))
+plt.show()
+
+7、切换线条样式marker
+import numpy as np
+import matplotlib.pyplot as plt
+x=np.arange(1,5)
+plt.plot(x,marker='o')
+plt.plot(x+1,marker='>')
+plt.plot(x+2,marker='s')
+plt.show()
+
+8、显示数学公式mathtext
+import numpy as np
+import matplotlib.pyplot as plt
+plt.title('chenqionghe')
+plt.xlim([1,8])
+plt.ylim([1,5])
+plt.text(2,4,r'$ \alpha \beta \pi \lambda \omega $',size=25)
+plt.text(4,4,r'$ \sin(0)=\cos(\frac{\pi}{2}) $',size=25)
+plt.text(2,2,r'$ \lim_{x \rightarrow y} \frac{1}{x^3} $',size=25)
+plt.text(4,2,r'$ \sqrt[4]{x}=\sqrt{y} $',size=25)
+plt.show()
+
+9、显示网格grid
+import numpy as np
+import matplotlib.pyplot as plt
+x='a','b','c','d'
+y=[15,30,45,10]
+plt.grid()  #也可以设置颜色、线条宽度、线条样式：plt.grid(color='g',linewidth='1',linestyle='-.')
+plt.plot(x,y)
+plt.show()
+
+10、调整坐标轴刻度locator_params
+import numpy as np
+import matplotlib.pyplot as plt
+x=np.arange(0,30,1)
+plt.plot(x,x)
+plt.locator_params(nbins=20)  #x轴和y轴分别显示20个；只调整x轴:plt.locator_params(‘'x',nbins=20)；只调整y轴:plt.locator_params(‘'y',nbins=20)
+plt.show()
+
+11、调整坐标轴范围axis/xlim/ylim
+import numpy as np
+import matplotlib.pyplot as plt
+x=np.arange(0,30,1)
+plt.plot(x,x*x)
+plt.xlim(xmin=10,xmax=25)  #plt.axis(),4个数字分别代表x轴和y轴的最小坐标，最大坐标
+plt.plot(x,x*x)
+plt.show()
+
+12、调整日期自适应autofmt_xdate
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+x=pd.date_range('2020/01/01',periods=30)
+y=np.arange(0,30,1)
+plt.plot(x,y)
+plt.gcf().autofmt_xdate()  #有时候显示日期会重叠在一起，调用plt.gcf().autofmt_xdate()，将自动调整角度
+plt.show()
+
+13、添加双坐标轴twinx
+import numpy as np
+import matplotlib.pyplot as plt
+x=np.arange(1,20)
+y1=x*x
+y2=np.log(x)
+plt.plot(x,y1)
+plt.twinx()  #添加一个坐标轴，默认0到1
+plt.plot(x,y2,'r')
+plt.show()
+
+14、填充区域fill/fill_beween
+#fill填充函数区域
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+myfont=matplotlib.font_manager.FontProperties(fname='C:\Windows\Fonts\simsun.ttc')
+x=np.linspace(0,5*np.pi,1000)
+y1=np.sin(x)
+y2=np.sin(2*x)
+plt.plot(x,y1)
+plt.plot(x,y2)
+plt.fill(x,y1,'g')  #填充
+plt.fill(x,y2,'r')
+plt.title('示例标题',fontproperties=myfont)
+plt.show()
+
+#fill_beween填充函数交叉区域
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+myfont=matplotlib.font_manager.FontProperties(fname='C:\Windows\Fonts\simsun.ttc')
+x=np.linspace(0,5*np.pi,1000)
+y1=np.sin(x)
+y2=np.sin(2*x)
+plt.plot(x,y1)
+plt.plot(x,y2)
+plt.fill_between(x,y1,y2,where=y1>y2,interpolate=True)
+plt.title('示例标题',fontproperties=myfont)
+plt.show()
+
+15、画一个填充好的形状matplotlib.patche
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.patches as mptaches
+xy1=np.array([0.2,0.2])
+xy2=np.array([0.2,0.8])
+xy3=np.array([0.8,0.2])
+xy4=np.array([0.8,0.8])
+fig,ax=plt.subplots()
+circle=mptaches.Circle(xy1,0.15)  #圆形,指定坐标和半径
+ax.add_patch(circle)
+rect=mptaches.Rectangle(xy2,0.2,0.1,color='r')  #长方形
+ax.add_patch(rect)
+polygon=mptaches.RegularPolygon(xy3,6,0.1,color='g')  #多边形
+ax.add_patch(polygon)
+ellipse=mptaches.Ellipse(xy4,0.4,0.2,color='c')  #椭圆
+ax.add_patch(ellipse)
+ax.axis('equal')
+plt.show()
+
+16、切换样式plt.style.use
+import matplotlib.pyplot as plt
+plt.style.available
+#matplotlib支持多种样式，可以通过plt.style.use切换样式
+#例如：plt.style.use('ggplot')，输入 plt.style.available 可以查看所有的样式。
+
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.patches as mptaches
+plt.style.use('ggplot')
+fig,axes=plt.subplots(2,2)  #新建4个子图
+ax1,ax2,ax3,ax4=axes.ravel()
+x,y=np.random.normal(size=(2,100))  #第一个图
+ax1.plot(x,y,'o')
+x=np.arange(0,10)  #第二个图
+y=np.arange(0,10)
+colors=plt.rcParams['axes.prop_cycle']
+length=np.linspace(0,10,len(colors))
+for s in length:
+    ax2.plot(x,y+s,'-')
+x=np.arange(5)  #第三个图
+y1,y2,y3=np.random.randint(1,25,size=(3,5))
+width=0.25
+ax3.bar(x,y1,width)
+ax3.bar(x+width,y2,width)
+ax3.bar(x+2*width,y3,width)
+for i,color in enumerate(colors):  #第四个图
+    xy=np.random.normal(size=2)
+ax4.add_patch(plt.Circle(xy,radius=0.3,color=color['color']))
+ax4.axis('equal')
+plt.show()
+
+参考：https://mp.weixin.qq.com/s/Y30CZ2TgQBavsE5rKPaEyw
