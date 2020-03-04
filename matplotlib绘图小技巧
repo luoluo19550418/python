@@ -102,7 +102,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 x=np.arange(0,30,1)
 plt.plot(x,x)
-plt.locator_params(nbins=20)  #x轴和y轴分别显示20个；只调整x轴:plt.locator_params(‘'x',nbins=20)；只调整y轴:plt.locator_params(‘'y',nbins=20)
+plt.locator_params(nbins=20)  #x轴和y轴分别显示20个；只调整x轴:plt.locator_params('x',nbins=20)；只调整y轴:plt.locator_params('y',nbins=20)
 plt.show()
 
 11、调整坐标轴范围axis/xlim/ylim
