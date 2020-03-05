@@ -1,0 +1,79 @@
+#1、purpose：找某路径下的"*.txt"文件
+'''步骤：
+运行脚本：run finddir.py
+实例化类：aa=FindDir('E:\\code\\python\\plotTemp\\2020.2\\')
+运行函数：aa.returndir()
+'''
+import os
+class FindDir():
+	def __init__(self,path):
+		self.path=path
+	def returndir(self):
+		ld=[]
+		dirs=os.listdir(self.path)
+		for i in dirs:
+			if os.path.splitext(i)[1]=='.txt':  #分开文件名和扩展名
+				ld.append(i)
+		return ld
+
+#2、for循环读文件
+class ForeadFile():
+	def __init__(self,listdir):
+		self.listdir=listdir
+	def returndata(self):
+		data1,data2,data3,data4=[],[],[],[]  #可以添加识别几个参数
+		for i in self.listdir:
+			with open(i,'r') as f:
+				lines=f.readlines()
+				for line in lines:
+					value=[s for s in line.split( )]
+					data1.append(float(value[0]))
+					data2.append(float(value[1]))
+					data3.append(float(value[20]))
+					data4.append(float(value[21]))
+		return data1,data2,data3,data4
+
+#3、画图
+import matplotlib
+import matplotlib.pyplot as plt
+import pandas as pd
+class PlotData():
+	def __init__(self,data):
+		self.data=data
+	def returnplot(self):
+		
+		'''fig=plt.figure(1); ax1=fig.add_subplot(111); ax2=ax1.twinx()
+		#matplotlib.rcParams['xtick.direction'] = 'in'
+		#matplotlib.rcParams['ytick.direction'] = 'in'
+		ax1.plot(self.data[0],self.data[2],color='b',lw=1.0,ls='-',label='4K')
+		ax1.set_ylim(2,4);
+		ax2.plot(self.data[0],self.data[3],color='r',lw=1.0,ls='-',label='50k')
+		ax2.set_ylim(20,60)
+		#plt.legend(loc='upper left')
+		#plt.gcf().autofmt_xdate()
+		#plt.ylim(ymin=2,ymax=4)
+		#plt.locator_params('x',nbin=5)
+		#plt.ylabel('T(K)')
+		plt.show()'''
+		fig = plt.figure()
+		ax1 = fig.add_subplot(111)
+		'''ax1.plot(self.data[0],self.data[2],'r',label="right");
+		ax1.legend(loc=1)
+		ax1.set_ylabel('Y values for exp(-x)');'''
+		ax2 = ax1.twinx() # this is the important function
+		ax2.plot(self.data[0],self.data[3], 'g',label = "left")
+		ax2.legend(loc=2)
+		ax2.set_ylim([30,60]);
+		ax2.set_ylabel('Y values for ln(x)');
+		ax2.set_xlabel('Same X for both exp(-x) and ln(x)');
+		plt.show()
+		
+#4、主程序调用
+import finddir
+import foreadfile
+import plotdata
+
+aa=finddir.FindDir('E:\\code\\python\\plotTemp\\2020.2\\'); listdir=aa.returndir()
+bb=foreadfile.ForeadFile(listdir); data=bb.returndata()
+#print(data[2])
+#cc=plotdata.PlotData(data); cc.returnplot()
