@@ -20,7 +20,7 @@ class PlotData():
 		ax2.set_ylabel('T(K)_50K')
 		ax2.set_ylim(30,80)
 		
-		plt.title(self.i+'月份接收机4K/50K冷板温度变化',fontproperties=myfont)
+		plt.title(self.i+'月份接收机4K/50K冷板温度变化',fontproperties=myfont)  #"self.i"引用变量
 		plt.grid(linestyle='-.')
 		plt.gcf().autofmt_xdate()
 		plt.savefig(self.i+'.png')
