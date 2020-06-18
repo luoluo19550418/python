@@ -1,7 +1,8 @@
 from matplotlib import pyplot as plt
 import matplotlib as mpl
 
-myfont=mpl.font_manager.FontProperties(fname='C:\Windows\Fonts\simsun.ttc') #中文库
+myfont=mpl.font_manager.FontProperties(fname='C:\Windows\Fonts\simsun.ttc', size=15) #中文库
+mpl.rcParams.update({'font.size': 15})
 
 plt.figure(figsize=(10,20)) #调节图形大小，宽，高
 labels = ['青海','云南', '四川', '南京'] #定义饼状图的标签，标签是列表
