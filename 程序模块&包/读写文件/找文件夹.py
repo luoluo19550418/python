@@ -3,7 +3,7 @@
 
 import os 
 
-def returnfolder(rootdir):
+def returnfolder(rootdir): # rootdir is path（路径）
 	list_dirs = os.walk(rootdir); folder=[]
 	for root,dirs,files in list_dirs:
 		for d in dirs:
