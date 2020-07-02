@@ -1,0 +1,5 @@
+z1_theorms.class !rms of single spectrum in 14m range (-10,10;-10,10)
+z2_regrid.class !find number of spectrum and regrid
+z3_sayrms.class !
+z4_averms.py !seek arithmetic mean
+z5_plorms.py !plot
