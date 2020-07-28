@@ -10,3 +10,7 @@ d=np.hstack((a,b)) #水平
 2、
 e=a.tolist() #数组转列表
 f=np.array(e) #列表转数据
+
+3、
+a = np.zeros((437647,18))
+a[:,1]=dataset.values[:,1] #把 dataset第一列值 赋值给 数组a的第一列
