@@ -14,3 +14,13 @@ f=np.array(e) #列表转数据
 3、
 a = np.zeros((437647,18))
 a[:,1]=dataset.values[:,1] #把 dataset第一列值 赋值给 数组a的第一列
+
+4、
+list(map(lambda x: int(x),years)) #字符串型列表 转 整型列表
+def s2f(sdata):
+	fdata=[]
+	for s in sdata:
+		fdata.append(float(s))
+	return fdata
+
+
