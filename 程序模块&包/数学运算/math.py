@@ -23,6 +23,6 @@ def s2f(sdata):
 		fdata.append(float(s))
 	return fdata
 
-5、异常处理
+5、异常处理 （不好找错）
 6、arr = np.empty((len(months),4),dtype=object); #定义空矩阵，可添字符串，浮点型等元素
 
